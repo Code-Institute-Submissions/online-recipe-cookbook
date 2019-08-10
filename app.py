@@ -8,7 +8,6 @@ app.config["MONGO_DBNAME"] = 'cookbookDb'
 app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost')
 
 
-
 mongo = PyMongo(app)
 
 @app.route('/')
@@ -21,6 +20,10 @@ def edit_recipe(recipe_id):
     the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     return render_template('edit_recipe.html', recipe=the_recipe)
 
+@app.route('/show_recipe/<recipe_id>')
+def show_recipe(recipe_id):
+    the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    return render_template('show_recipe.html', recipe=the_recipe )
 
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
