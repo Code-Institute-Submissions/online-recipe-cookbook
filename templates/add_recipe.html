@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <h3>Add Recipe</h3>
+        <div class="container">
+             <div class="row">
+                <form action="{{ url_for('insert_recipe')}}" method="POST"class="col s12">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <i class="material-icons prefix">fastfood</i>
+                      <input id="recipe_name" type="text" name="recipe_name"class="validate">
+                      <label for="recipe_name">Recipe Name</label>
+                    </div>
+                    <div class="input-field col s3">
+                      <i class="material-icons prefix">timeline</i>
+                      <input id="prep_time" name="prep_time" type="text" class="validate">
+                      <label for="prep_time">Preparation Time</label>
+                    </div>
+                    <div class="input-field col s3">
+                      <i class="material-icons prefix">timeline</i>
+                      <input id="cook_time" name="cook_time" type="text" class="validate">
+                      <label for="cook_time">Cook Time</label>
+                    </div>
+                    <div class="input-field col s12">
+                      <i class="material-icons prefix">fastfood</i>
+                      <input id="ingredients" name="ingredients" type="text" class="validate">
+                      <label for="ingredients">Ingredients</label>
+                    </div>
+                    <div class="input-field col s12">
+                      <i class="material-icons prefix">pan_tool</i>
+                      <input id="tools_used" name="tools_used" type="text" class="validate">
+                      <label for="tools_used">Tools Used</label>
+                    </div>
+                    <div class="input-field col s12">
+                      <i class="material-icons prefix">format_list_numbered</i>
+                      <input id="method_steps" name="method_steps" type="text" class="validate">
+                      <label for="method_steps">Method Steps</label>
+                    </div>
+                    <div class="input-field col s6">
+                      <i class="material-icons prefix">picture_in_picture</i>
+                      <input id="image_link" name="image_link" type="text" class="validate">
+                      <label for="image_link">Link to image</label>
+                    </div>
+                    
+                  </div>
+                  <button class="btn waves-effect waves-light right" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                  </button>
+                </form>
+  </div>
+        </div>
+    </body>
+</html>
+{% endblock %}

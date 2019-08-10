@@ -18,11 +18,32 @@
     </ul>
   </div>
 </nav></header>
-    {% block content %} {% endblock %}
+    {% block content %}      
+       
+    {% endblock %}
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    
+    <script type="text/javascript">
+    function sendItem(val) {
+        console.log(val);
+    }
+    $(function () {
+            $('input.autocomplete').autocomplete({
+                data: {
+                    "Apple": null,
+                    "Microsoft": null,
+                    "Google": 'http://placehold.it/250x250'
+                },
+                onAutocomplete: function(txt) {
+                  sendItem(txt);
+                },
+                limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+            });
+
+    });
+    </script>
+
 </body>
 
 </html>
