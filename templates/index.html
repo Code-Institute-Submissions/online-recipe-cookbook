@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% block content %}
 <!DOCTYPE html>
 <html>
@@ -5,7 +6,8 @@
         
     </head>
     <body>
-        <p>Hello, World!</p>
+         {% for recipe in recipes %}
+         {{{{recipe.recipe_name}}}}
     </body>
 </html>
 {% endblock %}
