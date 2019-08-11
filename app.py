@@ -29,7 +29,18 @@ def show_recipe(recipe_id):
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
     return redirect(url_for('get_top_recipes'))
+
+@app.route('/add_comment_to_recipe/<recipe_id>', methods=['POST'])
+def add_comment_to_recipe(recipe_id):
+    recipes = mongo.db.recipes
     
+    recipes.update(
+        {'_id': ObjectId(recipe_id)},
+        {
+             '$push':{'comments': request.form.get('comment')}
+        }, upsert=True)
+    return redirect(url_for('show_recipe', recipe_id=recipe_id))
+
 @app.route('/update_recipe/<recipe_id>', methods=['POST'])
 def update_recipe(recipe_id):
     recipes = mongo.db.recipes
