@@ -5,7 +5,8 @@ from bson.objectid import ObjectId
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'cookbookDb'
-app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost')
+#app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost')
+app.config["MONGO_URI"]="mongodb+srv://root-user96:r00tUser96@myfirstcluster-ehz2d.mongodb.net/cookbookDb?retryWrites=true&w=majority"
 
 
 mongo = PyMongo(app)
@@ -30,6 +31,15 @@ def delete_recipe(recipe_id):
     mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
     return redirect(url_for('get_top_recipes'))
 
+@app.route('/add_like_to_recipe/<recipe_id>', methods=['POST'])
+def add_like_to_recipe(recipe_id):
+    recipes = mongo.db.recipes
+    
+    recipes.update(
+        {'_id':ObjectId(recipe_id)},{'likes': 1}, upsert=True
+        )
+        
+    return redirect(url_for('show_recipe', recipe_id=recipe_id))
 @app.route('/add_comment_to_recipe/<recipe_id>', methods=['POST'])
 def add_comment_to_recipe(recipe_id):
     recipes = mongo.db.recipes
