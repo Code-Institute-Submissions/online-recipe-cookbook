@@ -31,13 +31,14 @@ def delete_recipe(recipe_id):
     mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
     return redirect(url_for('get_top_recipes'))
 
-@app.route('/add_like_to_recipe/<recipe_id>', methods=['POST'])
+@app.route('/add_like_to_recipe/<recipe_id>', methods=['GET'])
 def add_like_to_recipe(recipe_id):
     recipes = mongo.db.recipes
     
     recipes.update(
-        {'_id':ObjectId(recipe_id)},{'likes': 1}, upsert=True
-        )
+        {'_id': ObjectId(recipe_id)},
+        { '$inc': { 'likes': +1} }
+    )
         
     return redirect(url_for('show_recipe', recipe_id=recipe_id))
 @app.route('/add_comment_to_recipe/<recipe_id>', methods=['POST'])
