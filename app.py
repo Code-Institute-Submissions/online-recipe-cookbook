@@ -24,7 +24,8 @@ def edit_recipe(recipe_id):
 @app.route('/show_recipe/<recipe_id>')
 def show_recipe(recipe_id):
     the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    return render_template('show_recipe.html', recipe=the_recipe )
+    recipe_comments = mongo.db.comments.find({"_recipe_id": ObjectId(recipe_id)})
+    return render_template('show_recipe.html', recipe=the_recipe, comments=recipe_comments)
 
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
@@ -41,15 +42,15 @@ def add_like_to_recipe(recipe_id):
     )
         
     return redirect(url_for('show_recipe', recipe_id=recipe_id))
+    
 @app.route('/add_comment_to_recipe/<recipe_id>', methods=['POST'])
 def add_comment_to_recipe(recipe_id):
     recipes = mongo.db.recipes
+    comments = mongo.db.comments
     
-    recipes.update(
-        {'_id': ObjectId(recipe_id)},
-        {
-             '$push':{'comments': request.form.get('comment')}
-        }, upsert=True)
+    commentdict = { "username": request.form.get('username'), "comment": request.form.get('comment'), "_recipe_id":ObjectId(recipe_id) }
+    comments.insert_one(commentdict)
+    
     return redirect(url_for('show_recipe', recipe_id=recipe_id))
 
 @app.route('/update_recipe/<recipe_id>', methods=['POST'])
