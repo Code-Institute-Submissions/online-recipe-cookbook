@@ -9,14 +9,10 @@ The objective of the site is to find, view and edit recipes online. This site ma
 The homepage contains all that a user would need from the perspective of uploading and viewing recipes.
 ### User stories: ###
 1. As a baker, I want to upload my new cake recipe.
-   - User goes to the home page
-   - User clicks the ‘+’ button 
-   -User fills in recipe details and clicks submit
 2. As a potential baker, I want to view a cake recipe.
-   - User goes to homepage
-   - User searches ‘cake’ on the top of the page
-   - User clicks on whichever recipe they like
-   - User may leave a comment on the recipe
+3. As a site visitor I want to show appreciation of other peoples recipes.
+4. As a coeliac, I want to view all gluten-free recipes.
+5. As a vegetarian, I want to share my meat-less dishes.
    
 ## Features  ##
 ### Existing Features ###
