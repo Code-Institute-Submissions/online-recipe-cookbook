@@ -38,7 +38,6 @@
         <div class="card-action">
           <h4> Like this recipe? Share the love </h4>
           <div class="row">
-            <!-- Check out using jQuery how to update the db with this. Is it because it's a get and not a post? -->
             <span><a href="{{url_for('add_like_to_recipe', recipe_id=recipe._id)}}"><i class="material-icons left">favorite</i></a> <p>{{recipe.likes}}</p></span>
           </div>
         </div>
@@ -69,6 +68,9 @@
             </form>
           </div>
         </div>
+        <div class="card-action">
+          <h4>See what others have said..</h4>
+        
          {% for comment in comments %}
          <div class="row">
           <div class="col s12 m12">
@@ -84,6 +86,7 @@
         </div>
               
         {%endfor  %}
+        </div>
       </div>
     </div>
   </div>

@@ -48,7 +48,7 @@ def add_comment_to_recipe(recipe_id):
     recipes = mongo.db.recipes
     comments = mongo.db.comments
     
-    commentdict = { "username": request.form.get('username'), "comment": request.form.get('comment'), "_recipe_id":ObjectId(recipe_id) }
+    commentdict = { "username": request.form.get('username'), "comment": request.form.get('comment'), "_recipe_id":ObjectId(recipe_id)}
     comments.insert_one(commentdict)
     
     return redirect(url_for('show_recipe', recipe_id=recipe_id))
