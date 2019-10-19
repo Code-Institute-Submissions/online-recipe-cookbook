@@ -1,7 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');
 .fa {
   color: white;
-  padding: .5;
+  padding: .5em;
   font-size: 2em;
   width: 1em;
   text-decoration: none;
+}
+
+.nav-wrapper{
+  font-family: 'Satisfy', cursive;
+  font-size: 20px;
+}
+
+header{
+ 
 }
