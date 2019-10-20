@@ -14,7 +14,9 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/get_top_recipes')
 def get_top_recipes():
-    return render_template("home.html", recipes=mongo.db.recipes.find())
+    
+    recipe_list = mongo.db.recipes.find().sort([( "likes", -1 )])
+    return render_template("home.html", recipes=recipe_list)
 
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
@@ -72,7 +74,9 @@ def update_recipe(recipe_id):
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
     recipes = mongo.db.recipes
-    recipes.insert_one(request.form.to_dict())
+    recipe_info = request.form.to_dict();
+    recipe_info['likes'] = 0
+    recipes.insert_one(recipe_info)
     return redirect(url_for('get_top_recipes'))
     
 @app.route('/add_recipe')
