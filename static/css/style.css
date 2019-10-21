@@ -19,6 +19,9 @@ h4{
     color: #ee6e73;
   font-size: 30px;
 }
+.btn{
+  background-color: #ee6e73;
+}
 .card{
   padding-left: 1em;
   padding-right: 1em;
