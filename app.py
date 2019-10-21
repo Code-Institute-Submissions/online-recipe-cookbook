@@ -21,7 +21,9 @@ def get_top_recipes():
 @app.route('/search_recipe/<recipe_term>')
 def search_recipe(recipe_term):
     q = ".*"+recipe_term +".*";
-    defined_recipe_list = mongo.db.recipes.find({"recipe_name":{'$regex': q }});
+    defined_recipe_list = mongo.db.recipes.find({"dietary_needs":{'$regex': q }});
+    if defined_recipe_list.count() == 0:
+        return render_template('no_results.html')
     
     return render_template('home.html', recipes=defined_recipe_list)
 @app.route('/edit_recipe/<recipe_id>')

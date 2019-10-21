@@ -26,3 +26,13 @@ h4{
   padding-left: 1em;
   padding-right: 1em;
 }
+
+footer {
+bottom: 0;
+width: 100%;
+}
+
+h1{
+  font-family: 'Satisfy', cursive;
+  font-size: 200px;
+}
