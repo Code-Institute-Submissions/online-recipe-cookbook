@@ -9,14 +9,20 @@
         <div class="row">
           
             <div class="col s12">
-              <div class="row">
+              <form action="{{url_for('show_recipe', recipe_id='5d4effbe851e025318bb9bd7')}}">
+                <div class="row">
                 <div class="input-field col s9">
                   <i class="center-align material-icons prefix">search</i>
-                  <input method="POST" action="{{url_for('get_recipe_names')}}" type="text" id="autocomplete-input" class="autocomplete">
+                  <input method="POST" action="{{url_for('show_recipe', recipe_id=2)}}" type="text" id="autocomplete-input" class="autocomplete">
                   <label for="autocomplete-input">Search for any recipies you like</label>
                 </div>
                 <a href="{{url_for('add_recipe')}}" class="btn-floating right-align btn-large waves-effect waves-light red" style="float: right; margin-top: 10px"><i class="material-icons">add</i></a>
               </div>
+              <button class="btn waves-effect waves-light right" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                  </button>
+              </form>
+              
             </div>
          </div>
         <div class="row">

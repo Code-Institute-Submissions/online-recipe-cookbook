@@ -27,7 +27,7 @@
     $('.modal').modal();
     
     function sendItem(val) {
-        console.log(val);
+        return val;
     }
     $(function () {
             $('input.autocomplete').autocomplete({
@@ -35,9 +35,14 @@
                   
                     "Apple": null,
                     "Microsoft": null,
-                    "Google": 'http://placehold.it/250x250'
+                    "Google": 'http://placehold.it/250x250',
+                    "pizza":null
                 },
                 onAutocomplete: function(txt) {
+                   var query = "/"+txt;
+                   window.location.pathname="/search_recipe"+query
+                    //window.location += query;
+                  console.log(window.location)
                   sendItem(txt);
                 },
                 limit: 20, // The max amount of results that can be shown at once. Default: Infinity.

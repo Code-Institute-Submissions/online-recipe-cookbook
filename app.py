@@ -18,6 +18,12 @@ def get_top_recipes():
     recipe_list = mongo.db.recipes.find().sort([( "likes", -1 )])
     return render_template("home.html", recipes=recipe_list)
 
+@app.route('/search_recipe/<recipe_term>')
+def search_recipe(recipe_term):
+    q = ".*"+recipe_term +".*";
+    defined_recipe_list = mongo.db.recipes.find({"recipe_name":{'$regex': q }});
+    
+    return render_template('home.html', recipes=defined_recipe_list)
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
     the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
