@@ -7,6 +7,16 @@ Comments are available here also, and the user may post their own comment, which
 ## UX ##
 The objective of the site is to find, view and edit recipes online. This site makes it easy for the user to upload their own recipes and view more. 
 The homepage contains all that a user would need from the perspective of uploading and viewing recipes.
+
+## Data ##
+For this, I used MongoDB as my database. I structured it with collection called recipes, with values such as below:
+{"_id":{"$oid":"5d5015614e88b888f2567f63"},"recipe_name":"Stir fry","prep_time":"10 mins","cook_time":"20 mins","ingredients":"Vegetables, noodles","method_steps":"open packet of food, cook the food, eat the food","tools_used":"wok","likes":{"$numberInt":"4"},"image_link":"https://d1doqjmisr497k.cloudfront.net/-/media/mccormick-us/recipes/mccormick/s/800/stir_fry_vegetables_800x800.jpg"}
+
+So each recipe has its own document, with unique id and properties.
+
+In order to do comments, I chose to create a new collection called comments. These entries contain their own unique id but also the id of the recipe they are related to. An entry looks like this: {"_id":{"$oid":"5dab4593cdcc0854ed2b43da"},"username":"burgerLover","comment":"best burger ever","_recipe_id":{"$oid":"5d4eb2bc1c9d440000c86cc0"}}
+
+
 ### User stories: ###
 1. As a baker, I want to upload my new cake recipe.
 2. As a potential baker, I want to view a cake recipe.
@@ -31,23 +41,29 @@ The homepage contains all that a user would need from the perspective of uploadi
 - Making the site more mobile friendly, where recipes become stacked
 - User accounts, where users can post recipe’s under their own name
 - Users may become rated based on their recipe ratings
+- Users may upload images instead of using links
 ## Technologies Used ##
- 
+ HTML, CSS, Flask, jQuery
 ## Testing ##
 - All testing for this project was done manually due to time constraints. Ideally the backend functionality would have been tested with automated scripts.
+I used chrome developer tools to test how the site works on different size screens
+
 ### Scenarios ###
 Create new Recipe
 - Try to submit a recipe without filling out all of the forms
 Add a comment
 - Try to add a comment without providing a username
 - Try add comment without putting text in comment field
+Delete a Recipe
+Edit a Recipe
 
 
 ## Deployment ##
 This application is deployed via Heroku: https://online-recipe-cookbook-flask.herokuapp.com/
 ## Credits ##
+
 ## Content ##
- 
+ Content taken from bbcgoodfood, and google
 ## Media ##
 The photos used in this site were obtained from google
 ## Acknowledgements ##
